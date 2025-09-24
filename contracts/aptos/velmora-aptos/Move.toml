@@ -1,0 +1,27 @@
+[package]
+name = "velmora-aptos"
+version = "1.0.0"
+authors = ["Velmora Team"]
+
+[addresses]
+velmora = "0xe4cfa8990d773402c3a4b5f40796dcac63c5b6ef9c703c54e6bfc07484b32557"
+
+[dev-addresses]
+velmora = "0xe4cfa8990d773402c3a4b5f40796dcac63c5b6ef9c703c54e6bfc07484b32557"
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies.AptosToken]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token"
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+[dev-dependencies]
