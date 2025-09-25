@@ -1,4 +1,4 @@
-# **Velmora: Aptos NFT Gaming Platform**
+# **Movexa: Aptos NFT Gaming Platform**
 
 ## 🚀 Overview
 
