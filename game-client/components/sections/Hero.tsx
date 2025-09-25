@@ -1,14 +1,13 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { usePrivyAuth } from "@/hooks/usePrivyAuth";
 import { useRouter } from "next/navigation";
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { usePrivyWallet } from "@/hooks/usePrivyWallet";
+import { useAptosWallet } from "@/hooks/useAptosWallet";
 
 const Hero: FC = () => {
-  const { connect: login, authenticated, logout } = usePrivyWallet();
+  const { connect, disconnect, isConnected, isConnecting, error, isPetraInstalled } = useAptosWallet();
   const router = useRouter();
 
   const handleGameLaunch = () => {
@@ -54,20 +53,52 @@ const Hero: FC = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
           >
-            {!authenticated ? (
-              <Button
-                onClick={login}
-                className="bg-gradient-to-r from-[#d4a373] to-[#ccd5ae] text-[#1a1510] px-8 py-3 rounded-lg hover:opacity-90 transition-all hover:scale-105"
-              >
-                Connect Wallet
-              </Button>
+            {error && (
+              <div className="text-red-400 text-sm mb-2">
+                {error}
+              </div>
+            )}
+            
+            {!isConnected ? (
+              <div className="flex flex-col items-center gap-2">
+                <Button
+                  onClick={connect}
+                  disabled={isConnecting || !isPetraInstalled}
+                  className="bg-gradient-to-r from-[#d4a373] to-[#ccd5ae] text-[#1a1510] px-8 py-3 rounded-lg hover:opacity-90 transition-all hover:scale-105 disabled:opacity-50"
+                >
+                  {isConnecting ? 'Connecting...' : 'Connect to Aptos'}
+                </Button>
+                {!isPetraInstalled && (
+                  <p className="text-[#ccd5ae] text-sm">
+                    Please install{' '}
+                    <a 
+                      href="https://petra.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[#d4a373] hover:underline"
+                    >
+                      Petra Wallet
+                    </a>
+                    {' '}to continue
+                  </p>
+                )}
+              </div>
             ) : (
-              <Button
-                onClick={handleGameLaunch}
-                className="bg-gradient-to-r from-[#d4a373] to-[#ccd5ae] text-[#1a1510] px-8 py-3 rounded-lg hover:opacity-90 transition-all hover:scale-105"
-              >
-                Launch Game
-              </Button>
+              <div className="flex gap-4">
+                <Button
+                  onClick={handleGameLaunch}
+                  className="bg-gradient-to-r from-[#d4a373] to-[#ccd5ae] text-[#1a1510] px-8 py-3 rounded-lg hover:opacity-90 transition-all hover:scale-105"
+                >
+                  Launch Game
+                </Button>
+                <Button
+                  onClick={disconnect}
+                  variant="outline"
+                  className="border-[#d4a373] text-[#d4a373] hover:bg-[#d4a373]/10"
+                >
+                  Disconnect
+                </Button>
+              </div>
             )}
             
             <Button
@@ -89,7 +120,7 @@ const Hero: FC = () => {
               { label: 'Players', value: '10K+' },
               { label: 'NFTs', value: '50K+' },
               { label: 'Transactions', value: '1M+' }
-            ].map((stat, index) => (
+            ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="text-2xl font-bold text-[#e9edc9]">{stat.value}</p>
                 <p className="text-[#ccd5ae]">{stat.label}</p>

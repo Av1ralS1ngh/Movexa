@@ -13,7 +13,7 @@ compiled_package_info:
     velmora: e4cfa8990d773402c3a4b5f40796dcac63c5b6ef9c703c54e6bfc07484b32557
     vm: "0000000000000000000000000000000000000000000000000000000000000000"
     vm_reserved: "0000000000000000000000000000000000000000000000000000000000000000"
-  source_digest: FE513D465877FCCE03D480D1456F2A2BAD8681137EE945336B6BABFA6B8F3AF6
+  source_digest: 5EDABF8C02F9B6AD7D904BC3B7E18163B9C08A2F881709B30D5F674A9DAD6A70
   build_flags:
     dev_mode: false
     test_mode: false
@@ -24,10 +24,9 @@ compiled_package_info:
     full_model_generation: true
     install_dir: ~
     force_recompilation: false
-    additional_named_addresses:
-      velmora: e4cfa8990d773402c3a4b5f40796dcac63c5b6ef9c703c54e6bfc07484b32557
+    additional_named_addresses: {}
     fetch_deps_only: false
-    skip_fetch_latest_git_deps: false
+    skip_fetch_latest_git_deps: true
     compiler_config:
       bytecode_version: 7
       known_attributes:

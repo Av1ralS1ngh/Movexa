@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePrivy } from '@privy-io/react-auth';
+import { useAptosWallet } from '@/hooks/useAptosWallet';
 import MobileError from '@/components/MobileError';
 import CharacterSelectionModal from '@/components/game/CharacterSelectionModal';
 import GameCanvas from '@/components/game/GameCanvas';
@@ -24,7 +24,7 @@ export default function GamePage() {
   const [isBattling, setIsBattling] = useState(false);
   const [playerGold, setPlayerGold] = useState(0);
   const [showGoldAchievement, setShowGoldAchievement] = useState(false);
-  const { ready, authenticated } = usePrivy();
+  const { isConnected } = useAptosWallet();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -87,8 +87,14 @@ export default function GamePage() {
     setIsGamePaused(false);
   };
 
-  if (!ready) return null;
-  if (!authenticated) return <div>Please connect your wallet to play</div>;
+  if (!isConnected) return (
+    <div className="flex items-center justify-center min-h-screen bg-[#1a1510]">
+      <div className="text-center">
+        <h1 className="text-2xl text-[#e9edc9] mb-4">Please connect your Aptos wallet to play</h1>
+        <p className="text-[#ccd5ae]">You need to connect your Petra wallet to access the game.</p>
+      </div>
+    </div>
+  );
   if (isMobile) return <MobileError />;
 
   return (

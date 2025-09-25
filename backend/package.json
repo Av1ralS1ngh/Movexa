@@ -5,6 +5,7 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
+    "@aptos-labs/ts-sdk": "^5.1.0",
     "aptos": "^1.21.0",
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
