@@ -62,8 +62,8 @@ This is an **Aptos-based NFT Game** where players can:
 ### **📦 Installation**  
 ```sh
 # Clone the repository
-git clone https://github.com/Av1ralS1ngh/Aura-Land.git
-cd Aura-Land/game-client
+git clone https://github.com/Av1ralS1ngh/Movexa.git
+cd Movexa/game-client
 
 # Install dependencies
 npm install
